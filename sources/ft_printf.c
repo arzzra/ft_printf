@@ -6,7 +6,7 @@
 /*   By: cdemetra <cdemetra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 18:53:04 by cdemetra          #+#    #+#             */
-/*   Updated: 2019/08/23 17:25:53 by cdemetra         ###   ########.fr       */
+/*   Updated: 2019/09/21 17:56:13 by cdemetra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_how_to_print(t_qualfrs *ql)
 		ft_print_u(ql);
 	else if (ql->typs == TYPES[12])
 		ft_color(ql);
+    else if (ql->typs == TYPES[11] || ql->typs == TYPES[10] || ql->typs == TYPES[9])
+        ft_print_floats(ql);
 	return ;
 }
 
@@ -58,8 +60,8 @@ void	ft_create_and_free(t_qualfrs *ql, int f)
 void	ft_search_syntax(char *format, t_qualfrs *qual)
 {
 	char	*ser;
-	int		i;
-	int		fls;
+	size_t		i;
+	size_t		fls;
 
 	i = 0;
 	fls = 0;
@@ -70,6 +72,7 @@ void	ft_search_syntax(char *format, t_qualfrs *qual)
 		i += ft_width(&(format)[i], qual);
 		i += ft_precision(&(format)[i], qual);
 		i += ft_length(&(format)[i], qual);
+		i += ft_zd(&(format)[i], qual);
 		if ((ser = ft_types(&(format)[i], qual)))
 			i++;
 		else

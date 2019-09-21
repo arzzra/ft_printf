@@ -1,10 +1,24 @@
-#include "double_m.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_int_part.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/19 16:28:25 by bcharity          #+#    #+#             */
+/*   Updated: 2019/09/20 14:32:58 by bcharity         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 
-void    solve_int_part(char *s_int, char** res_str, t_qualfrs *fmt_feature) //ДОБАВИТЬ ОБРАБОТКУ ФЛАГОВ!!
+
+#include "../includes/ft_printf.h"
+
+
+void    solve_int_part(char *s_int) //ДОБАВИТЬ ОБРАБОТКУ ФЛАГОВ!!
  {
      uint64_t buf[2000];
-    char                *p;
+   // char                *p;
 
     convert_integer(buf, s_int);
 

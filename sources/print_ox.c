@@ -6,7 +6,7 @@
 /*   By: cdemetra <cdemetra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 11:26:24 by cdemetra          #+#    #+#             */
-/*   Updated: 2019/09/16 17:30:01 by cdemetra         ###   ########.fr       */
+/*   Updated: 2019/09/21 19:38:39 by cdemetra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	ft_print_xo4(t_qualfrs *ql)
 		ql->countchr += write(1, ql->num, ql->countnum);
 	}
 	else if (ql->prcs == 0 && ql->num[0] == '0')
+	{
+		if (ql->width > 0)
+			ft_print_space(1, ql);
 		return ;
+	}
 	else
 		ql->countchr += write(1, ql->num, ql->countnum);
 }
@@ -99,10 +103,7 @@ void	ft_print_ox2(t_qualfrs *ql)
 
 	fl = ql->flg;
 	fl->sharp = (ql->typs == TYPES[5] && ql->prcs > ql->countnum
-
-
-
-	   ) ? 0 : fl->sharp;
+	) ? 0 : fl->sharp;
 	if (ql->width > ql->countnum)
 	{
 		if (fl->minus)

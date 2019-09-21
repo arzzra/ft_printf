@@ -6,7 +6,7 @@
 #    By: cdemetra <cdemetra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/16 16:33:59 by cdemetra          #+#    #+#              #
-#    Updated: 2019/08/19 14:34:33 by cdemetra         ###   ########.fr        #
+#    Updated: 2019/09/21 16:42:53 by cdemetra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,17 @@ DIR_O = temporary
 
 HEADER = include
 
-SOURCES = ft_printf.c convercions.c itoa.c length.c\
-		  parser.c print_format_csp.c print_int.c\
-		  print_int2.c print_ox.c print_ox2.c\
-		  print_u.c additional.c\
-		  some_function.c
+SOURCES = ft_printf.c convercions.c length.c\
+		parser.c print_format_csp.c print_int.c\
+		print_int2.c print_ox.c print_ox2.c\
+		print_u.c additional.c\
+		some_function.c\
+		save_int_part_e.c solve_e.c solve_f.c\
+		save_frac_part.c fill_res.c long_operation.c\
+		div_mod_l.c div_mod_l_2.c convert_mantiss.c print_int_part.c\
+		buffer.c start.c convert_bin_frac_part.c\
+		itoa2.c
+
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

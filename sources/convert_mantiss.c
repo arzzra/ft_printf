@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_mantiss.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/19 16:27:20 by bcharity          #+#    #+#             */
+/*   Updated: 2019/09/20 14:10:44 by bcharity         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "double_m.h"
+#include "../includes/ft_printf.h"
 
 
 char    *lead_zeros(long long exp, char *_part, char flag)
@@ -27,7 +38,7 @@ char    *lead_zeros(long long exp, char *_part, char flag)
     return (_part) ;
 }
 
-void frac_to_str(void *src, char *frac_part, int i,int k, long long exp)
+void frac_to_str(void *src, char *frac_part, int i,int k)
 {
     unsigned char    *s;
     unsigned char    bit;
@@ -99,7 +110,7 @@ void replace_bit_max(void *src, char *int_part, char *frac_part, size_t size, lo
             *int_part = bit + '0';
             int_part++;
             if(exp == 0)
-                frac_to_str(src, frac_part, i, k, exp);
+                frac_to_str(src, frac_part, i, k);
             exp--;
             k--;
         }

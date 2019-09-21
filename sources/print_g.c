@@ -6,40 +6,13 @@
 /*   By: cdemetra <cdemetra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 17:53:02 by cdemetra          #+#    #+#             */
-/*   Updated: 2019/08/21 22:37:06 by cdemetra         ###   ########.fr       */
+/*   Updated: 2019/09/19 16:47:04 by bcharity         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <math.h>
 
-void    print_bits(size_t size, void *ptr, char space)
-{
-   unsigned char	*b;
-   unsigned char	byte;
-   int				i;
-   int				j;
-
-   b = (unsigned char*)ptr;
-   i = size - 1;
-   j = 7;
-   while (i >= 0)
-   {
-       while (j >= 0)
-       {
-           byte = (b[i] >> j) & 1;
-		   printf("%c",(byte + '0'));
-           j--;
-       }
-       if (space == 1)
-           printf(" ");
-       j = 7;
-       i--;
-   }
-   printf("\n");
-}
-
-void	ft_print_nan_inf(t_qualfrs *ql, int f)
+/*void	ft_print_nan_inf(t_qualfrs *ql, int f)
 {
 	if (f == 1)
 	{
@@ -76,19 +49,11 @@ int		ft_inf_nan(char *s_int, t_qualfrs *ql)
 		{
 			if (s_int[0] == '0')
 				ql->countchr += write(1, &MINUS, 1);
-			ft_print_nan_inf(ql, 2);
+		//	ft_print_nan_inf(ql, 2);
 		}
 		return (1);
 	}
 	return (0);
-}
+}*/
 
-int main()
-{
-	long double gg;
 
-	gg = INFINITY;
-	printf("double = %+LE\n", gg);
-	print_bits(10, &gg, 0);
-	return (0);
-}

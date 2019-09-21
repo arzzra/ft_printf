@@ -6,7 +6,7 @@
 /*   By: cdemetra <cdemetra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 12:47:10 by cdemetra          #+#    #+#             */
-/*   Updated: 2019/08/23 17:30:21 by cdemetra         ###   ########.fr       */
+/*   Updated: 2019/09/21 19:10:52 by cdemetra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,17 @@ void	ft_print_di_pos3(t_qualfrs *ql)
 {
 	t_flag *fl;
 	t_length *len;
-	int		plus;
 
 	fl = ql->flg;
 	len = ql->len;
-	plus = fl->plus > 0 ? 1 : 0;
 	if (ql->prcs > ql->countnum)
 	{
-		ft_print_space((ql->width - (ql->countnum + plus)
+		ft_print_space((ql->width - (ql->countnum + fl->plus)
 		- (ql->prcs - ql->countnum)), ql);
 	}
 	else
-		ft_print_space((ql->width - (ql->countnum + plus)), ql);
-	if (fl->space > 0 && fl->plus == 0 && (ql->width < ql->countnum || ql->width < ql->prcs))
+		ft_print_space((ql->width - (ql->countnum + fl->plus)), ql);
+	if (fl->space > 0 && fl->plus == 0 && (ql->width < ql->countnum || ql->width <= ql->prcs))
 		ft_print_space(1, ql);
 	else if (fl->plus > 0)
 		ql->countchr += write(1, &PLUS, 1);

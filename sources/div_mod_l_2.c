@@ -1,7 +1,16 @@
-//
-// Created by Buster Charity on 2019-08-21.
-//
-#include "double_m.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   div_mod_l_2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/19 16:27:28 by bcharity          #+#    #+#             */
+/*   Updated: 2019/09/20 17:32:31 by bcharity         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ft_printf.h"
 
 int simple_case_div_mod(uint64_t *buf_a, uint64_t *buf_b, uint64_t *res)
 {
@@ -38,7 +47,7 @@ void get_zero_buf(uint64_t *buf, uint64_t m)
 
     buf[0] = m;
     temp1 = 1;
-    while(temp1 <= m)
+    while(temp1 <= (long long)m)
     {
         buf[temp1++] = 0;
     }
@@ -55,12 +64,11 @@ void guess_stabilization(uint64_t *r, uint64_t *qGuess, uint64_t nextpart, uint6
     {
         temp2 = buf_b[n-1]*(*qGuess);
         temp1 = (*r)*BASE + nextpart;
-        if ((temp2 > temp1) || ((*qGuess) == BASE))
+        if (((uint64_t)temp2 > temp1) || ((*qGuess) == BASE))
         {
             --(*qGuess);
             (*r) += buf_b[n];
         }
         else break;
     }
-
 }

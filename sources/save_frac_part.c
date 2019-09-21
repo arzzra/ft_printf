@@ -1,10 +1,18 @@
-//
-// Created by Buster Charity on 2019-08-28.
-//
-#include "double_m.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_frac_part.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/19 16:28:34 by bcharity          #+#    #+#             */
+/*   Updated: 2019/09/21 12:03:21 by bcharity         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../includes/ft_printf.h"
 
-static void replace_dig(char *s_base_i, short *f)
+void replace_dig(char *s_base_i, short *f)
 {
 	if (*s_base_i - 48 < 9)
 	{
@@ -19,10 +27,10 @@ static void replace_dig(char *s_base_i, short *f)
 }
 
 
-static int check_last_dig(char *s)
+int check_last_dig(char *s)
 {
-    char        *snum;
-    long long   len;
+    char		*snum;
+    size_t 		len;
 
 
     snum = s;
@@ -52,10 +60,6 @@ void		round_line(char *s_full, t_qualfrs *fmt)
 	short		f;
 
 
-//    printf("_s_%s*\n", s_full);
-
-
-    //printf("_s[len]_%c*\n", s_full[len]);
 
    i = fmt->ld->realprec ;
 
@@ -65,7 +69,7 @@ void		round_line(char *s_full, t_qualfrs *fmt)
 	if(check_last_dig(&(s_full[i])))
 	{
 	    if (i > 1)
-	        replace_dig(&(s_full[i - 1]), &f);
+	        replace_dig(&(s_full[i-1]), &f);
 	    else
 	        f = 1;
 		while (f == 1)
@@ -81,7 +85,7 @@ void		round_line(char *s_full, t_qualfrs *fmt)
 	}
 	s_full[fmt->ld->realprec] = '\0';
 
-  //  printf("\nAAAAround_s_%s*\n\n", s_full);
+    //printf("\nAAAAround_s_%s*\n\n", s_full);
 }
 
 
@@ -94,7 +98,7 @@ void fill_prec(char *s_full, uint64_t *buf, t_qualfrs *fmt)
 		return;
 	}
 	buf_to_str(buf, s_full);
-	round_line(s_full, fmt);
+
 }
 
 
@@ -118,7 +122,6 @@ static long long	get_start_index(char *s_full, uint64_t *buf, t_qualfrs *fmt)
 	}
 	else
 	{
-		fmt->ld->realprec -= fmt->ld->count_0;
 		ft_memset(s_full, '0', fmt->ld->count_0);
 		s_full[fmt->ld->count_0] = '0';
 		return (fmt->ld->count_0);
@@ -127,7 +130,7 @@ static long long	get_start_index(char *s_full, uint64_t *buf, t_qualfrs *fmt)
 
 char    *save_frac_part(char *res_str, uint64_t *buf, t_qualfrs *fmt)
 {
-	char			s_full[buf[0] * BASELEN + fmt->ld->count_0 + 2 ]; //+ '.' +'\0' + lead_zeros
+	char			s_full[buf[0] * BASELEN + fmt->ld->count_0 + 2 + 8 ]; //+ '.' +'\0' + lead_zeros
 	long long		i;
 
 
@@ -141,10 +144,10 @@ char    *save_frac_part(char *res_str, uint64_t *buf, t_qualfrs *fmt)
 	{
 		s_full[0] = '.';
 		i = get_start_index(&(s_full[1]), buf, fmt) + 1;
-		if (i == 0)
+		if (i == 0 && s_full[fmt->ld->count_0 + 1] == '0' )
             return (fill_res_f(res_str,&(s_full[0]),fmt));
-		fill_prec(&(s_full[i]), buf, fmt);
-		//printf("fill_prec_%s*\n", &(s_full[0]));
+		fill_prec(&(s_full[fmt->ld->count_0  + 1]), buf, fmt);
+        round_line(&(s_full[1]), fmt);
 		if (fmt->ld->count_0 > 0 && fmt->ld->carry == 1)
 			s_full[i - 1] = '1';
 	}
@@ -155,7 +158,7 @@ char    *save_frac_part(char *res_str, uint64_t *buf, t_qualfrs *fmt)
 void zero_prec(char *s_full, uint64_t *buf, t_qualfrs *fmt)
 {
 	char		*s_base;
-	unsigned	i;
+	//unsigned	i;
 
 	if (fmt->flg->sharp == 1)
 		s_full[0] = '.';

@@ -1,14 +1,23 @@
-//
-// Created by Buster Charity on 2019-09-17.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_int_part_e.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/19 16:28:42 by bcharity          #+#    #+#             */
+/*   Updated: 2019/09/20 13:50:04 by bcharity         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "double_m.h"
+
+#include "../includes/ft_printf.h"
 
 
-char     *save_int_part_e(char *res_str, uint64_t *p_int, t_qualfrs *fmt)
+char     *save_int_part_e(char *res_str, t_qualfrs *fmt)
 {
     char        *p;
-    uint64_t    num;
+   // uint64_t    num;
 
     p = res_str;
     p += fill_left_part(res_str, fmt);
@@ -18,9 +27,14 @@ char     *save_int_part_e(char *res_str, uint64_t *p_int, t_qualfrs *fmt)
         *p = '0';
         //00.000
     }
-    *p = fmt->ld->tmp;
+    else
+    {
+        if (fmt->ld->tmp == '9')
+            fmt->ld->tmp = '1';
+        *p = fmt->ld->tmp;
+    }
 
-    if (fmt->flg->sharp == 1)
+    if ( fmt->ld->realprec > 0 || fmt->flg->sharp == 1)
         *(++p) = '.';
 
     /*printf("res_str_%s*\n", res_str);
@@ -28,8 +42,6 @@ char     *save_int_part_e(char *res_str, uint64_t *p_int, t_qualfrs *fmt)
 
     return(res_str);
 }
-
-
 
 long     fill_left_part(char *res_str, t_qualfrs *fmt)
 {

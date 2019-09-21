@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_bin_frac_part.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcharity <bcharity@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/19 16:27:13 by bcharity          #+#    #+#             */
+/*   Updated: 2019/09/20 16:26:34 by bcharity         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "double_m.h"
+#include "../includes/ft_printf.h"
 
 uint64_t       *convert_fraction(char *s_frac, uint64_t *buf,  t_qualfrs *fmt_feature)
 {
     uint64_t res[2000];
     uint64_t  buf_2n[2001];
-    int i;
     int prec;
 
 

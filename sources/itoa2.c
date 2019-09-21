@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa.c                                             :+:      :+:    :+:   */
+/*   itoa2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdemetra <cdemetra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:40:19 by cdemetra          #+#    #+#             */
-/*   Updated: 2019/08/20 18:51:52 by cdemetra         ###   ########.fr       */
+/*   Updated: 2019/09/21 16:41:26 by cdemetra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_numbcounter(unsigned long long n)
+static int	ft_numbcounter2(unsigned long long n)
 {
 	int				i;
 
@@ -32,7 +32,7 @@ char		*ft_itoa2(unsigned long long int n, int *x)
 	char			*str;
 	int				q;
 
-	q = ft_numbcounter(n);
+	q = ft_numbcounter2(n);
 	*x = q;
 	if (!(str = ft_strnew(q)))
 		return (NULL);
